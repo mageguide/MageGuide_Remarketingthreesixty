@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+                id="MageGuide_Remarketingthreesixty::Remarketingthreesixty_Label"
+                title="MageGuide Remarketingthreesixty"
+                module="MageGuide_Remarketingthreesixty"
+                sortOrder="81"
+                parent="MageGuide_Mgbase::MageGuide"
+                resource="MageGuide_Remarketingthreesixty::Remarketingthreesixty_Label"
+        />
+        <add
+                id="MageGuide_Remarketingthreesixty::Remarketingthreesixty"
+                title="Remarketing360 Configuration"
+                module="MageGuide_Remarketingthreesixty"
+                action="adminhtml/system_config/edit/section/mageguide_remarketingthreesixty/"
+                sortOrder="1"
+                parent="MageGuide_Remarketingthreesixty::Remarketingthreesixty_Label"
+                resource="MageGuide_Remarketingthreesixty::Remarketingthreesixty"
+        />
+    </menu>
+</config>

@@ -1,0 +1,61 @@
+<?php 
+	
+    $isActive = $block->getIsEnable();
+    $programID = $block->getTagId();
+
+    $programIdOrSku = $block->getValueSkuOrId();
+    $isActiveGoogleEvents = $block->getIfGoogleEvents();
+	
+	if ($isActive && $programID != ""):
+?>
+
+	<!-- Google Tag Manager -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo $programID ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager -->
+
+	<!-- Remarketing360 -->
+	<script> 
+		dataLayer.push({
+		'event': 'fireRemarketingTag',
+		'google_tag_params':
+		{
+		   dynx_itemid: <?php echo $this->getDynxProductId(); ?>,
+		   dynx_pagetype: '<?php echo $this->getPageType(); ?>',
+		   dynx_totalvalue: '<?php echo $this->getPageValue() ?>'
+		}
+		}); 
+	</script>
+
+
+	<?php 
+		if ($isActiveGoogleEvents): 
+			if ($this->getPageType() == 'offerdetail'){ ?>
+
+				<!-- Google Events -->
+				<script> 
+					dataLayer.push({
+					   'event': '<?php echo $this->getPageTypeGoogleEvents(); ?>',
+					   'product_id': <?php echo $this->getDynxProductId(); ?>, 
+					   'product_value': '<?php echo $this->getPageValue() ?>'
+					}); 
+				</script>
+	<?php 
+			}
+			else if ($this->getPageType() == 'conversion'){ ?>
+
+				<!-- Google Events -->
+				<script> 
+					dataLayer.push({
+					   'event': '<?php echo $this->getPageTypeGoogleEvents(); ?>',
+					   'product_id': <?php echo $this->getDynxProductId(); ?>, 
+					   'order_value': '<?php echo $this->getPageValueGoogleEvents() ?>'
+					}); 
+				</script>
+
+	<?php 	}
+		endif;
+	?>
+
+<?php endif; ?>
